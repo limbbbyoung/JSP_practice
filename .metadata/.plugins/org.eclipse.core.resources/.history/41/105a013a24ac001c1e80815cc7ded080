@@ -1,0 +1,17 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+       <form action="http://localhost:8181/JSPbasic/jspobject/request/req_bmi.jsp" method="get">
+     키 : <input type="number" name="cm">cm<br/>
+     체중 : <input type="number" name="kg">kg<br/>
+     <input type="submit" value="확인">
+     </form>
+</body>
+</html>
