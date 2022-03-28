@@ -1,0 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+    // cookie_login.jsp에서 보내준 id, pw를 받아주세요.
+    // post방식임을 감안해주세요.
+    request.setCharacterEncoding("utf-8");
+    String id = request.getParameter("id");
+    String pw = request.getParameter("password");
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html>

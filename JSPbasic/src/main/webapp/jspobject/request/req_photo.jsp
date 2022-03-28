@@ -3,6 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+ 
+</style>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -20,10 +23,13 @@
      <h1>그림 선택하기</h1> 
      <hr/>                                                                                                   
       <table class="table table-border table-hover table-warning">
+       <thead>
        <tr>
          <th>사진 설명</th>
          <th>선택</th>
        </tr>
+       </thead>
+       <tbody>
        <tr> 
          <td>분위기있고 아름다운 여성의 사진입니다.</td>
          <td><input type="radio" name="photo" value="1번그림">1번 그림 &nbsp;</td>
@@ -32,6 +38,7 @@
          <td>강가에 소파가 있는 사진입니다.</td>
          <td><input type="radio" name="photo" value="2번그림">2번 그림 &nbsp;</td>
        </tr>
+       </tbody>
     </table>
     <input type="submit" class="btn btn-danger" value="그림 보러 가기"> 
     </form>

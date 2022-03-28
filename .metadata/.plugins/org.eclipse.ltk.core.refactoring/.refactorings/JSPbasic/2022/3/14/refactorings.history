@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;JSPbasic/src/main/webapp/jspobject/cookie/login_ok_fail.jsp&apos; to &apos;login_ok.jsp&apos;" description="Rename resource &apos;login_ok_fail.jsp&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/webapp/jspobject/cookie/login_ok_fail.jsp" name="login_ok.jsp" stamp="1648469994748" updateReferences="true"/>
+</session>

@@ -1,0 +1,37 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+    <table>
+    <thead>
+        <tr>
+          <th>가수</th>
+          <th>노래제목</th>
+          <th>노래선택</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>PATEKO</td>
+          <td>Rainy day</td>
+          <td><input type="radio" name="music" value="1번음악"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+    </tbody>
+    </table>
+</body>
+</html>
