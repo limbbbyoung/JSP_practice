@@ -8,5 +8,6 @@
 </head>
 <body>
    <h1>비밀번호가 틀렸습니다.</h1>
+   <a href="http://localhost:8181/JSPbasic/jspobject/cookie/cookie_login.jsp">로그인창으로 돌아가기</a>
 </body>
 </html>

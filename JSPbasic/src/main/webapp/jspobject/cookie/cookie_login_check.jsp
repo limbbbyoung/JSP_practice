@@ -19,20 +19,27 @@
     // 2의 경우 콘솔에 "비밀번호가 틀렸습니다."  -> login_pw_fail.jsp 
     // 3의 경우 콘솔에 "로그인하셨습니다. 환영합니다."  -> login_ok_fail.jsp
     // 라고 찍히도록 조건문을 작성해보세요.  -> 로 리다이렉트 시켜주시고 콘솔대신 body에 문장을 찍으세요.
-    if(id.equals("abcd1234")){
-    	if(pw.equals("1111")){
+   
+    if(id.equals("abcd1234")){ // 아이디가 있는 경우
+    	if(pw.equals("1111")){ // 비밀번호도 맞는 경우
+    		// 로그인 성공시 쿠키를 생성하고, 로그인 완료 페이지에서는 해당 쿠키를 확인하게 만들어서 로그인 여부를 감지합니다.
+    		// 쿠키 생성(쿠키 이름은 login_id, 값은 abcd1234)
+    		Cookie loginId = new Cookie("login_id", "abcd1234");
+    	    loginId.setMaxAge(1800);
+    	    // 쿠키 발송
+    	    response.addCookie(loginId);
     		response.sendRedirect("http://localhost:8181/JSPbasic/jspobject/cookie/login_ok.jsp");
-    	} else { 
+    	} else { // 비밀번호는 틀린 경우 
     		response.sendRedirect("http://localhost:8181/JSPbasic/jspobject/cookie/login_pw_fail.jsp");
-    } 
-    } else { 
+              } 
+    } else { // 아이디가 없는 경우 
     	response.sendRedirect("http://localhost:8181/JSPbasic/jspobject/cookie/login_id_fail.jsp");
     }
 %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8"> 
 <title>Insert title here</title>
 </head>
 <body>

@@ -1,0 +1,24 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	request.setCharacterEncoding("utf-8");
+	String userId = request.getParameter("id");
+	String userPw = request.getParameter("pw");
+	System.out.println(userId);
+	System.out.println(userPw);
+	if(userId == "abcd1234"){
+		if(userPw == "1111"){
+			session.setAttribute("session_id", "abcd1234");
+		}
+	}
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html>
