@@ -24,7 +24,7 @@ public class JDBCSelect {
 		     // 쿼리문은 Statement라는 변수에 저장해서 날라줘야 합니다.
 		     Statement stmt = con.createStatement();
 		     // .executeQuery() 내부에 실행할 쿼리문을 문자열로 작성합니다.
-		     // SELECT문을 실행할 때 excuteQuery()를  실행합니다.
+		     // SELECT문을 실행할 때 excuteQuery()를 실행합니다.
 		     // SELECT문을 실행한 결과 자료는 ResultSet 이라는 자료로 받을 수 있습니다.
 		     ResultSet rs = stmt.executeQuery("SELECT * FROM userinfo");
 		     
