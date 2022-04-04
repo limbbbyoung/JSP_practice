@@ -33,7 +33,7 @@ public class PreparedDelete {
 			pstmt.executeUpdate();
 		    
 		}catch(Exception e) {
-			
+			e.printStackTrace();
 		} finally {
 			scan.close();
 		} System.out.println("DB조작완료");
