@@ -10,11 +10,10 @@
 	String connectUrl = "jdbc:mysql://localhost:3306/jdbcprac2?serverTimezone=UTC";
 	String connectId = "root";
 	String connectPw = "1111";
-    // 1. userId 라는 이름으로 전달되는 데이터를 받으면
-    String userId = request.getParameter("userId");
-    // 2. DB연동후
-    // 3. 해당 아이디의 정보만 ResultSet에 받아와서
-	
+    // userId 라는 이름으로 전달되는 데이터 받기
+    String formId = request.getParameter("userId");
+    String formPw = request.getParameter("userPw");
+    
 	ResultSet rs = null;	
 		try { 
 			Class.forName(dbType);
@@ -23,7 +22,7 @@
 		    String sql = "SELECT * FROM userinfo WHERE user_id=?";
 		     
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, userId);
+			pstmt.setString(1, formId);
 			
 			rs = pstmt.executeQuery();
 		} catch(Exception e) {
@@ -42,29 +41,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-    <%-- 4. body 내부에 XX 유저의 정보입니다 라는 문장과 함께 전체 정보가 나오도록 코드를 짜주세요 --%>
-    <% if(rs.next()){ %>
-    <table border="3" class="table table-warning table-hover table-bordered">
-        <thead>
-            <tr>
-               <th>아이디</th>
-               <th>비밀번호</th>
-               <th>이름</th>
-               <th>이메일</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr> 
-               <h1><%= userId %> 유저의 정보입니다</h1>
-               <td><%=rs.getString(1)%></td>
-               <td><%=rs.getString(2)%></td>
-               <td><%=rs.getString(3)%></td>
-               <td><%=rs.getString(4)%></td>
-            </tr>
-        </tbody>
-    </table>        
-    <% } else { %>
-                   <h1><%= userId %> 계정은 존재하지 않습니다.</h1>
-               <% } %>
+     <% if(rs.next()){
+    		 if(rs.getString("user_pw").equals(formPw)){
+    			 session.setAttribute("s_user_id", formId);
+    			 response.sendRedirect("http://localhost:8181/JDBCPrj/user/loginWelcome.jsp");
+    		 } else{
+    			 response.sendRedirect("http://localhost:8181/JDBCPrj/user/userPwFail.jsp");
+    		 }
+      } else { 
+	      response.sendRedirect("http://localhost:8181/JDBCPrj/user/userIdFail.jsp");
+      } 
+     %>
 </body>
 </html>
