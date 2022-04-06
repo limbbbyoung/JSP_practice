@@ -24,6 +24,8 @@ String userId = (String)session.getAttribute("s_user_id");
 </head>
 <body>
       <h1><%= userId %>님 환영합니다.</h1>
-      <a href="http://localhost:8181/JDBCPrj/user/userLogout.jsp">로그아웃</a>
+      <a href="http://localhost:8181/JDBCPrj/user/userLogout.jsp">로그아웃</a><br/>
+      <a href="http://localhost:8181/JDBCPrj/user/userDelete.jsp">회원탈퇴</a><br/>
+      <a href="http://localhost:8181/JDBCPrj/user/userUpdateForm(Class).jsp">회원정보수정하기</a>
 </body>
 </html>

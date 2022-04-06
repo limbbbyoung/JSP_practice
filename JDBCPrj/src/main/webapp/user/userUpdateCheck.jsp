@@ -1,7 +1,6 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
-<%@page import="java.sql.ResultSet"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -11,26 +10,22 @@
 	String connectId = "root";
 	String connectPw = "1111";
 	
-	String u_formId = request.getParameter("Id");
-    String u_formPw = request.getParameter("Pw");
-    String u_formName = request.getParameter("u_name");
-    String u_formEmail = request.getParameter("u_email");
-    
-	 session.setAttribute("user_id", u_formId);	
-	 session.setAttribute("user_pw", u_formPw);	
-	 session.setAttribute("user_name", u_formName);	
-	 session.setAttribute("user_email", u_formEmail);	
+	String update_userId = (String)session.getAttribute("update_userId");
+	String update_Id = request.getParameter("Up_Id");
+    String update_Pw = request.getParameter("Up_pw");
+    String update_Name = request.getParameter("Up_name");
+    String update_Email = request.getParameter("Up_email");	
 	try { 
 		Class.forName(dbType);
 		Connection con = DriverManager.getConnection(connectUrl, connectId, connectPw);
 		
-	    String sql = "INSERT INTO userinfo VALUE (?, ?, ?, ?)";
+	    String sql = "UPDATE userinfo SET user_pw=?, user_name=?, email=? WHERE user_id=?";
 	     
 		PreparedStatement pstmt = con.prepareStatement(sql);
-		pstmt.setString(1, u_formId);
-		pstmt.setString(2, u_formPw);
-		pstmt.setString(3, u_formName);
-		pstmt.setString(4, u_formEmail);
+		pstmt.setString(4, update_Id);
+		pstmt.setString(1, update_Pw);
+		pstmt.setString(2, update_Name);
+		pstmt.setString(3, update_Email);
 		
 		pstmt.executeUpdate();
 	} catch(Exception e) {
@@ -44,6 +39,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-     <h1><%= u_formId %>님 회원가입 축하드립니다.</h1>
+    <h1><%= update_userId %>님의 회원정보가 수정되었습니다.</h1>
 </body>
 </html>

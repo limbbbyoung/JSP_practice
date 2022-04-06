@@ -27,6 +27,7 @@
      <input type="password" name="userPw" placeholder="비밀번호"><br/>
      <button type="submit" class="btn btn-warning">로그인</button>
      </form>
-     <a href="http://localhost:8181/JDBCPrj/user/userJoinForm.jsp">회원가입하기</a>
+     <a href="http://localhost:8181/JDBCPrj/user/userJoinForm.jsp">회원가입하기</a><br/>
+     <a href="http://localhost:8181/JDBCPrj/user/userUpdateForm1.jsp">회원정보수정하기</a>
 </body>
 </html>
