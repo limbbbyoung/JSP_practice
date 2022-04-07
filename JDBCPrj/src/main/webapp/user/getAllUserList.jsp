@@ -1,3 +1,6 @@
+<%@page import="com.ict.domain.UserVO"%>
+<%@page import="java.util.List"%>
+<%@page import="com.ict.domain.UserDAO"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
@@ -5,6 +8,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
 <% 
+/*
     // 스크립트릿 내부에 전체 회원정보를 가져오도록 코드를 작성해서
     // ResultSet 변수에 저장까지만 해주세요.
     String dbType = "com.mysql.cj.jdbc.Driver";
@@ -27,6 +31,10 @@
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+		*/
+		// 바로 위에 원래 작성된 접속 로직 저장되어있음.
+		UserDAO dao = new UserDAO();// 생성과 동시에 Class.forName(디비타입)까지 호출
+		List<UserVO> userList = dao.getAllUserList();// DB연결해 전체 목록 가져다 주고 종료.
 %>
 <!DOCTYPE html>
 <html>
@@ -63,14 +71,7 @@
        </tr>
    </thead>
    <tbody>
-          <% while(rs.next()){ %>
-           <tr>
-          <td><%= rs.getString(1) %></td>
-          <td><%= rs.getString(2) %></td>
-          <td><%= rs.getString(3) %></td>
-          <td><%= rs.getString(4) %></td>
-           </tr>
-          <% } %>
+   
    </tbody>
 </table>
 </body>

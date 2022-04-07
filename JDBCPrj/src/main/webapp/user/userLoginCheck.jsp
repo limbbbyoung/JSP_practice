@@ -19,6 +19,9 @@
 	// ResultSet의 데이터를 자바 클래스로 교체할 수 있도록 UserVO를 생성
 	UserVO user = new UserVO();
 	
+	// redirect시 이동할 URL을 저장할 수 있는 변수 생성
+	String reUrl = null;
+	
 		try { 
 			Class.forName(dbType);
 			Connection con = DriverManager.getConnection(connectUrl, connectId, connectPw);
@@ -32,6 +35,8 @@
 			
 			if(rs.next()){// 메모리회수를 위해 바로 조회
 			// 생성된 UserVO에 Setter를 이용해 변수명에 맞는 자료 입력
+			System.out.println(user);
+			System.out.println("--------VO내부 데이터 저장 전----------");
 			user.setUserId(rs.getString(1));
 			user.setUserPw(rs.getString(2));
 			user.setUserName(rs.getString(3));
@@ -42,17 +47,31 @@
 			System.out.println(user.getUserPw());
 			System.out.println(user.getUserName());
 			System.out.println(user.getEmail());
+			System.out.println(user);
 			System.out.println("------------------");
-			} else {
-				response.sendRedirect("http://localhost:8181/JDBCPrj/user/userIdFail.jsp");
+			} else { 
+				// rs.next()가 false라는것은  DB에 해당 아이디가 존재하지 않는것이므로 아이디 없음 페이지
+				reUrl = "userIdFail.jsp";
 			}
 			rs.close(); // ResultSet, Connection, PreparedStatement는 .close()로 닫을수있음.
 		} catch(Exception e) {
 			e.printStackTrace();
-		}  
-		// UserVO의 getter를 이용해 비밀번호를 얻어옴
+		}
+
+		// UserVO의 getter를 이용해 아이디와 비밀번호를 얻어옴
 		String dbPw;
 		dbPw = user.getUserPw();
+		String dbId;
+		dbId = user.getUserId();
+		
+	     if(reUrl==null && dbPw.equals(formPw)){
+				 session.setAttribute("s_user_id", formId);
+				 reUrl = "loginWelcome.jsp"; // 성공시 이동할 URL 저장
+			 } else if(reUrl==null && !formPw.equals(dbPw)){
+				 // 아이디는 있으나 비번이 일치하지 않으면 비빌번호가 틀린 것
+				 reUrl = "userPwFail.jsp";
+			 }
+	         response.sendRedirect(reUrl);
 %>
 <!DOCTYPE html>
 <html>
@@ -66,13 +85,5 @@
 <title>Insert title here</title>
 </head>
 <body>
-     <%
-   		 if(dbPw.equals(formPw)){
-   			 session.setAttribute("s_user_id", formId);
-   			 response.sendRedirect("http://localhost:8181/JDBCPrj/user/loginWelcome.jsp");
-   		 } else{
-   			 response.sendRedirect("http://localhost:8181/JDBCPrj/user/userPwFail.jsp");
-   		 }
-     %>
 </body>
 </html>
