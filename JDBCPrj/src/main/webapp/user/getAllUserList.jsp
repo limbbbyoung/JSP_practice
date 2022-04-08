@@ -35,6 +35,7 @@
 		// 바로 위에 원래 작성된 접속 로직 저장되어있음.
 		UserDAO dao = new UserDAO();// 생성과 동시에 Class.forName(디비타입)까지 호출
 		List<UserVO> userList = dao.getAllUserList();// DB연결해 전체 목록 가져다 주고 종료.
+		out.println("DAO에서 전달 받은 자료 : " + userList);
 %>
 <!DOCTYPE html>
 <html>
@@ -71,7 +72,14 @@
        </tr>
    </thead>
    <tbody>
-   
+        <% for(UserVO user : userList){ %>
+          <tr>
+             <td><%= user.getUserId() %></td>
+             <td><%= user.getUserPw() %></td>
+             <td><%= user.getUserName() %></td>
+             <td><%= user.getEmail() %></td>
+          </tr>
+        <% } %>
    </tbody>
 </table>
 </body>

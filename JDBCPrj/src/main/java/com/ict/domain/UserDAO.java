@@ -67,7 +67,7 @@ public class UserDAO {
 				// userList에 쌓기
 				userList.add(user);
 			}
-			System.out.println("리스트에 쌓인 자료 체크 : " + userList);
+			System.out.println("리스트에 쌓인 자료 체크 : " + userList);	
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally { 
@@ -81,5 +81,46 @@ public class UserDAO {
 		}
 		
 		return userList;
-	}
-}
+	} // getAllUserList() 끝나는 지점.
+	
+	public UserVO getUserInfo(String userId) {
+
+		Connection con = null;
+		ResultSet rs = null;	
+		PreparedStatement pstmt = null;
+		// 유저정보를 저장할 수 있는 변수를 생성합니다
+		UserVO user = new UserVO();
+			try { 
+				Class.forName(dbType);
+				con = DriverManager.getConnection(connectUrl, connectId, connectPw);
+				
+			    String sql = "SELECT * FROM userinfo WHERE user_id=?";
+			     
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, userId);
+				rs = pstmt.executeQuery();
+				// rs내부 데이터를 user변수에 옮겨넣어주세요.
+				System.out.println("데이터 입력 전 : " + user);
+				if(rs.next()) {
+					user.setUserId(rs.getString(1));
+					user.setUserPw(rs.getString(2));
+					user.setUserName(rs.getString(3));
+					user.setEmail(rs.getString(4));
+				}
+				System.out.println("데이터 입력 후 : " + user);
+			} catch(Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					con.close();
+					rs.close();
+					pstmt.close();
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+			return user;
+	}// getUserInfo() 끝나는 지점
+	
+	
+}// UserDAO 끝나는 지점

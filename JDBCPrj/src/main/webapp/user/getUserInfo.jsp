@@ -1,3 +1,5 @@
+<%@page import="com.ict.domain.UserVO"%>
+<%@page import="com.ict.domain.UserDAO"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
@@ -5,8 +7,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	// 1. userId 라는 이름으로 전달되는 데이터를 받으면
+	String userId = request.getParameter("userId");
     request.setCharacterEncoding("utf-8"); // post방식으로 form을 받을때 한글 호환
-    String dbType = "com.mysql.cj.jdbc.Driver";
+   
+    // - DAO생성(MySQL을 쓴다고 지정)
+    UserDAO dao = new UserDAO();
+    // - DAO 내부 메서드인 .getUserInfo(유저명) 호출
+    UserVO user = dao.getUserInfo(userId);
+    System.out.println("유저 정보 확인 : " + user);
+    out.println(user);
+    
+    /* String dbType = "com.mysql.cj.jdbc.Driver";
 	String connectUrl = "jdbc:mysql://localhost:3306/jdbcprac2?serverTimezone=UTC";
 	String connectId = "root";
 	String connectPw = "1111";
@@ -28,7 +40,7 @@
 			rs = pstmt.executeQuery();
 		} catch(Exception e) {
 			e.printStackTrace();
-		}  
+		} */
 %>
 <!DOCTYPE html>
 <html>
@@ -42,8 +54,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-    <%-- 4. body 내부에 XX 유저의 정보입니다 라는 문장과 함께 전체 정보가 나오도록 코드를 짜주세요 --%>
-    <% if(rs.next()){ %>
+       <h1><%= userId %> 유저의 정보입니다</h1>
     <table border="3" class="table table-warning table-hover table-bordered">
         <thead>
             <tr>
@@ -55,16 +66,12 @@
         </thead>
         <tbody>
             <tr> 
-               <h1><%= userId %> 유저의 정보입니다</h1>
-               <td><%=rs.getString(1)%></td>
-               <td><%=rs.getString(2)%></td>
-               <td><%=rs.getString(3)%></td>
-               <td><%=rs.getString(4)%></td>
+               <td><%= user.getUserId() %></td>
+               <td><%= user.getUserPw() %></td>
+               <td><%= user.getUserName() %></td>
+               <td><%= user.getEmail() %></td>
             </tr>
         </tbody>
     </table>        
-    <% } else { %>
-                   <h1><%= userId %> 계정은 존재하지 않습니다.</h1>
-               <% } %>
 </body>
 </html>
