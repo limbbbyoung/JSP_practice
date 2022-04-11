@@ -1,3 +1,5 @@
+<%@page import="com.ict.domain.UserVO"%>
+<%@page import="com.ict.domain.UserDAO"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
@@ -7,28 +9,12 @@
 <%
     
     request.setCharacterEncoding("utf-8"); // post방식으로 form을 받을때 한글 호환
-    String dbType = "com.mysql.cj.jdbc.Driver";
-	String connectUrl = "jdbc:mysql://localhost:3306/jdbcprac2?serverTimezone=UTC";
-	String connectId = "root";
-	String connectPw = "1111";
-    
     String update_userId = request.getParameter("update_userId");
     session.setAttribute("update_userId", update_userId);
-	ResultSet rs = null;	
-		try { 
-			Class.forName(dbType);
-			Connection con = DriverManager.getConnection(connectUrl, connectId, connectPw);
-			
-		    String sql = "SELECT * FROM userinfo WHERE user_id=?";
-		     
-			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, update_userId);
-			
-			rs = pstmt.executeQuery();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}  
-
+    
+    UserDAO dao = new UserDAO();
+    UserVO user = dao.getUserInfo(update_userId);
+    
 %>
 <!DOCTYPE html>
 <html>
@@ -49,12 +35,10 @@
      단, 아이디는 입력하지 않습니다. -->
       <h1><%= update_userId %>님의 정보수정하기</h1>
      <form action="http://localhost:8181/JDBCPrj/user/userUpdateCheck.jsp" method="post">
-     <% if(rs.next()){ %>
-     <input type="text" name="Up_id" value=<%= rs.getString("user_id") %> disabled><br/><!-- disabled가 아니라 readonly를 걸면 정보는 보내주되 읽기만 가능. disabled는 데이터 전달자체가 불가능 -->
-     <input type="password" name="Up_pw" value=<%= rs.getString("user_pw") %>><br/>
-     <input type="text" name="Up_name" value=<%= rs.getString("user_name") %>><br/>
-     <input type="text" name="Up_email" value=<%= rs.getString("email") %>><br/>
-     <% } %>
+     <input type="text" name="Up_id" value=<%= user.getUserId() %> disabled><br/><!-- disabled가 아니라 readonly를 걸면 정보는 보내주되 읽기만 가능. disabled는 데이터 전달자체가 불가능 -->
+     <input type="password" name="Up_pw"><br/>
+     <input type="text" name="Up_name" value=<%= user.getUserName() %>><br/>
+     <input type="text" name="Up_email" value=<%= user.getEmail() %>><br/>
      <button type="submit" class="btn btn-warning">수정하기</button>
      </form>
 </body>

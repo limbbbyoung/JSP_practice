@@ -1,3 +1,4 @@
+<%@page import="com.ict.domain.UserDAO"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
@@ -6,36 +7,15 @@
     pageEncoding="UTF-8"%>
 <%
 	request.setCharacterEncoding("utf-8"); // post방식으로 form을 받을때 한글 호환
-	String dbType = "com.mysql.cj.jdbc.Driver";
-	String connectUrl = "jdbc:mysql://localhost:3306/jdbcprac2?serverTimezone=UTC";
-	String connectId = "root";
-	String connectPw = "1111";
-	
-	String u_formId = request.getParameter("Id");
-    String u_formPw = request.getParameter("Pw");
-    String u_formName = request.getParameter("u_name");
-    String u_formEmail = request.getParameter("u_email");
+	String userId = request.getParameter("Id");
+    String userPw = request.getParameter("Pw");
+    String userName = request.getParameter("u_name");
+    String Email = request.getParameter("u_email");
     
-	 session.setAttribute("user_id", u_formId);	
-	 session.setAttribute("user_pw", u_formPw);	
-	 session.setAttribute("user_name", u_formName);	
-	 session.setAttribute("user_email", u_formEmail);	
-	try { 
-		Class.forName(dbType);
-		Connection con = DriverManager.getConnection(connectUrl, connectId, connectPw);
-		
-	    String sql = "INSERT INTO userinfo VALUE (?, ?, ?, ?)";
-	     
-		PreparedStatement pstmt = con.prepareStatement(sql);
-		pstmt.setString(1, u_formId);
-		pstmt.setString(2, u_formPw);
-		pstmt.setString(3, u_formName);
-		pstmt.setString(4, u_formEmail);
-		
-		pstmt.executeUpdate();
-	} catch(Exception e) {
-		e.printStackTrace();
-	}  
+    UserDAO dao = new UserDAO();
+   	String idAdd = dao.userJoinCheck(userId, userPw, userName, Email);
+   	System.out.println(idAdd);
+     
 %>
 <!DOCTYPE html>
 <html>
@@ -44,6 +24,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-     <h1><%= u_formId %>님 회원가입 축하드립니다.</h1>
+     <h1><%= userId %>님 회원가입 축하드립니다.</h1>
 </body>
 </html>
