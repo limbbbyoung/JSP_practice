@@ -12,7 +12,7 @@
     request.setCharacterEncoding("utf-8"); // post방식으로 form을 받을때 한글 호환
    
     // - DAO생성(MySQL을 쓴다고 지정)
-    UserDAO dao = new UserDAO();
+    UserDAO dao = UserDAO.getInstance();
     // - DAO 내부 메서드인 .getUserInfo(유저명) 호출
     UserVO user = dao.getUserInfo(userId);
     System.out.println("유저 정보 확인 : " + user);

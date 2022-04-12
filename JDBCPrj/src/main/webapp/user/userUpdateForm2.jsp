@@ -12,7 +12,7 @@
     String update_userId = request.getParameter("update_userId");
     session.setAttribute("update_userId", update_userId);
     
-    UserDAO dao = new UserDAO();
+    UserDAO dao = UserDAO.getInstance();
     UserVO user = dao.getUserInfo(update_userId);
     
 %>

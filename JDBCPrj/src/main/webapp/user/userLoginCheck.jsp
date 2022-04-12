@@ -16,7 +16,7 @@
     String dbId = null;
     String dbPw = null;
     // DAO를 이용한 로그인 로직으로 수정해주세요.
-    UserDAO dao = new UserDAO();
+    UserDAO dao = UserDAO.getInstance();
     UserVO user = dao.getUserInfo(formId);
     dbId = user.getUserId();
     dbPw = user.getUserPw();

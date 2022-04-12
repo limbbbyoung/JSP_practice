@@ -12,7 +12,7 @@
     String userName = request.getParameter("u_name");
     String Email = request.getParameter("u_email");
     
-    UserDAO dao = new UserDAO();
+    UserDAO dao = UserDAO.getInstance();
    	String idAdd = dao.userJoinCheck(userId, userPw, userName, Email);
    	System.out.println(idAdd);
      

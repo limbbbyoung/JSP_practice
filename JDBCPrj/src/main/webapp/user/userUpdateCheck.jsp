@@ -13,7 +13,7 @@
     String update_Email = request.getParameter("Up_email");	
     
     session.invalidate();
-    UserDAO dao = new UserDAO();
+    UserDAO dao = UserDAO.getInstance();
     String update = dao.userUpdateCheck(update_userId, update_Pw, update_Name, update_Email);
     System.out.println(update);
 %>

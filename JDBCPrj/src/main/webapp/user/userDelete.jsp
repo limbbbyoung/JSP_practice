@@ -20,7 +20,7 @@
 	String connectId = "root";
 	String connectPw = "1111";  */
     session.invalidate();
-	UserDAO dao = new UserDAO();
+	UserDAO dao = UserDAO.getInstance();
    	String delete = dao.userDelete(userId);
    	System.out.println(delete); 
     // 다시 로그인창으로 리다이렉트 해서 보내기
