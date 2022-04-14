@@ -11,7 +11,8 @@
     종전처럼 jsp, boot라는 이름으로 submit을 하는 폼을 생성해주세요 -->
     <form action="http://localhost:8181/MyFirstWeb/spring">
     <input type="text" name="jsp"><br/>
-    <input type="text" name="boot">
+    <input type="text" name="boot"><br/>
+    <input type="text" name="jpa">
     <button type="submit">제출</button>
     </form>
 </body>

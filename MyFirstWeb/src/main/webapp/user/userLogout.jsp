@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+    // 세션파기
+    session.invalidate();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,8 +11,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-   jsp로 들어온 값 : ${jsp }<br/>
-   boot로 들어온 값 : ${boot }<br/>
-   jpa로 들어온 값 : ${jpa }<br/>
+     <h1>로그아웃 되었습니다.</h1>
+     <%
+     response.sendRedirect("http://localhost:8181/JDBCPrj/user/userLoginForm.jsp");
+     %>
 </body>
 </html>
