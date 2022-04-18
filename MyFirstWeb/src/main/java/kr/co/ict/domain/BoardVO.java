@@ -13,6 +13,7 @@ public class BoardVO {
 	private Date bDate;
 	private Date mDate;
 	private int hit;
+	
 	public int getBoardNum() {
 		return boardNum;
 	}

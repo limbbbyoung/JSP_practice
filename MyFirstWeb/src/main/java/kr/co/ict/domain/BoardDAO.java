@@ -84,4 +84,51 @@ public class BoardDAO {
 				
 				return boardList;
 			}
+			
+			// bno를 입력받아 해당 글 번호의 게시글 하나만 가져오는 
+			// getBoardDetail(int bno)를 DAO에 생성해주세요.
+	        
+			// boardTbl에서 board_num이 primary key이기 때문에 
+			// row 1개를 가져오거나(글번호존재시), 안가져오거나(글번호가 존재하지 않음)
+			public BoardVO getBoardDetail(int boardNum){
+				Connection con = null;
+				PreparedStatement pstmt = null;
+				ResultSet rs = null;
+				BoardVO board = new BoardVO();
+				try {
+					con = ds.getConnection();
+					String sql = "SELECT * FROM boardTbl WHERE board_num=?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, boardNum);
+					rs = pstmt.executeQuery();
+					
+					if(rs.next()) {
+						// 디버깅으로 비어있는것 확인
+						System.out.println("집어넣기 전 : " + board);
+						// setter로 다 집어넣기
+						board.setBoardNum(rs.getInt(1));
+						board.setTitle(rs.getString(2));
+						board.setContent(rs.getString(3));
+						board.setWriter(rs.getString(4));
+						board.setbDate(rs.getDate(5));
+						board.setmDate(rs.getDate(6));
+						board.setHit(rs.getInt(7));
+						// 다 집어넣은 후 디버깅
+						System.out.println("집어넣은 후 : " + board);
+					} else {
+						System.out.println("계정이 없습니다.");
+					}
+				} catch(Exception e) {
+					e.printStackTrace();
+				} finally { 
+					try {
+					con.close();
+					pstmt.close();
+					rs.close();
+					} catch(Exception e) {
+						e.printStackTrace();
+					}
+				}	
+				return board;
+			}
 }

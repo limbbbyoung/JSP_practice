@@ -15,7 +15,7 @@
 <body>
 	${boardList }
     <h1>/boardList 임시 페이지</h1>
-    <table class="table table-primary">
+    <table class="table table-primary table-hover">
        <thead>
            <tr>
               <th>글번호</th>
@@ -32,7 +32,7 @@
          <c:forEach var="board" items="${boardList }">
 	          <tr>
 	             <td>${board.boardNum}</td>
-	             <td>${board.title}</td>
+	             <td><a href="/board/boardDetail?board_num=${board.boardNum}">${board.title}</a></td>
 	             <td>${board.writer}</td>
 	             <td>${board.bDate}</td>
 	             <td>${board.mDate}</td>
