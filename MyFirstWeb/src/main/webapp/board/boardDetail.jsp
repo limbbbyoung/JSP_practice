@@ -4,10 +4,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-    ${board }
+    <h1>${board.boardNum }번 글 조회결과입니다.</h1>
+    제목 : <input type="text" value="${board.title }"><br/>
+    <textarea placeholder="readonly" cols="40" rows="10">${board.content }</textarea><br/>
+    글쓴이 : <input type="text" value="${board.writer }"><br/>
+    쓴 날짜 : ${board.bDate }<br/>
+    마지막 수정날짜 : ${board.mDate }
 </body>
 </html>

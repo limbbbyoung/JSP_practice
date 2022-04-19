@@ -1,5 +1,6 @@
 package kr.co.ict.domain;
 
+import java.net.http.HttpResponse;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,6 +9,7 @@ import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.servlet.RequestDispatcher;
 import javax.sql.DataSource;
 
 public class BoardDAO {
@@ -131,4 +133,33 @@ public class BoardDAO {
 				}	
 				return board;
 			}
+			
+			// INSERT 실행하는 메서드
+			public String boardInsert(String writer, String title, String content){
+				Connection con = null;
+				PreparedStatement pstmt = null;
+				try {
+					con = ds.getConnection();
+					String sql = "INSERT INTO boardTbl(title, content, writer) VALUE(?, ?, ?)";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, title);
+					pstmt.setString(2, content);
+					pstmt.setString(3, writer);
+					pstmt.executeUpdate();
+					
+				} catch(Exception e) {
+					e.printStackTrace();
+				} finally { 
+					try {
+						con.close();
+						pstmt.close();
+					} catch(Exception e) {
+						e.printStackTrace();
+					}
+				}	
+				String succ = "글쓰기가 완료되었습니다.";
+				return succ;
+			}
+			
+			
 }
