@@ -50,7 +50,7 @@ public class BoardDAO {
 				List<BoardVO> boardList = new ArrayList<>();
 				try {
 					con = ds.getConnection();
-					String sql = "SELECT * FROM boardTbl";
+					String sql = "SELECT * FROM boardTbl ORDER BY board_num DESC";
 					pstmt = con.prepareStatement(sql);
 					rs = pstmt.executeQuery();
 					
@@ -140,7 +140,7 @@ public class BoardDAO {
 				PreparedStatement pstmt = null;
 				try {
 					con = ds.getConnection();
-					String sql = "INSERT INTO boardTbl(title, content, writer) VALUE(?, ?, ?)";
+					String sql = "INSERT INTO boardTbl(title, content, writer) VALUES(?, ?, ?)";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, title);
 					pstmt.setString(2, content);
@@ -159,6 +159,29 @@ public class BoardDAO {
 				}	
 				String succ = "글쓰기가 완료되었습니다.";
 				return succ;
+			}
+			
+			// 데이터를 삭제하는 DAO의 메서드
+			public void boardDelete(int boardNum){
+				Connection con = null;
+				PreparedStatement pstmt = null;
+				try {
+					con = ds.getConnection();
+					String sql = "DELETE FROM boardTbl WHERE board_num=?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, boardNum);
+					pstmt.executeUpdate();
+					
+				} catch(Exception e) {
+					e.printStackTrace();
+				} finally { 
+					try {
+						con.close();
+						pstmt.close();
+					} catch(Exception e) {
+						e.printStackTrace();
+					}
+				}	
 			}
 			
 			

@@ -15,6 +15,11 @@
     <textarea placeholder="readonly" cols="40" rows="10">${board.content }</textarea><br/>
     글쓴이 : <input type="text" value="${board.writer }"><br/>
     쓴 날짜 : ${board.bDate }<br/>
-    마지막 수정날짜 : ${board.mDate }
+    마지막 수정날짜 : ${board.mDate }<hr/>
+    
+    <form action="http://localhost:8181/MyFirstWeb/boardDelete" method="post">
+    <input type="hidden" name="boardNum" value="${board.boardNum }">
+    <button type="submit">삭제</button>
+    </form>
 </body>
 </html>

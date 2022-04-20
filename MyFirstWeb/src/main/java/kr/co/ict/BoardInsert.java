@@ -45,13 +45,9 @@ public class BoardInsert extends HttpServlet {
 		String content = request.getParameter("content");
 		// DAO를 생성하세요.
 		BoardDAO dao = BoardDAO.getInstance();
-		// DAO에서 데이터 추가해주기
-	    String insertboard = dao.boardInsert(writer, title, content);
-		// 바인딩해주세요.
-		request.setAttribute("insertboard", insertboard);
-	    // 포워딩해주세요.
-		RequestDispatcher dp = request.getRequestDispatcher("/board/boardInsertForm.jsp");
-		dp.forward(request, response);
+		// DAO를 통해 INSERT 구문 실행
+	    String insertBoard = dao.boardInsert(writer, title, content);
+	    // 리스트로 리다이렉트(서블릿 주소로 
 		response.sendRedirect("http://localhost:8181/MyFirstWeb/boardList");
 	}
 
