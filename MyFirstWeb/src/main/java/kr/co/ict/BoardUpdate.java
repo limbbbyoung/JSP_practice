@@ -45,12 +45,12 @@ public class BoardUpdate extends HttpServlet {
 		int boardNum = Integer.parseInt(strBoardNum);
 		System.out.println("내용 : " + content);
 		System.out.println("게시글 번호 : " + boardNum);
-		// DAO를 생성하세요.
-		BoardDAO dao = BoardDAO.getInstance();
+		// 싱글턴 패턴으로 DAO생성해서 가져오기
+		BoardDAO dao = BoardDAO.getInstance(); 
 		// DAO를 통해 UPDATE구문 실행
 	    dao.boardUpdate(content, boardNum);
 	    // 리스트로 리다이렉트
-		response.sendRedirect("http://localhost:8181/MyFirstWeb/boardDetail");
+		response.sendRedirect("http://localhost:8181/MyFirstWeb/boardDetail?board_num=" + boardNum);
 		
 		/*.setAttribute("boardNum", boardNum);
 		

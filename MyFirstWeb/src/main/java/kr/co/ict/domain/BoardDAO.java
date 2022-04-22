@@ -190,12 +190,11 @@ public class BoardDAO {
 				PreparedStatement pstmt = null;
 				try {
 					con = ds.getConnection();
-					String sql = "UPDATE boardTbl SET content=? WHERE board_num=?";
+					String sql = "UPDATE boardTbl SET content=?, mdate=now() WHERE board_num=?";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, content);
 					pstmt.setInt(2, boardNum);
-					pstmt.executeUpdate();
-					
+					pstmt.executeUpdate();					
 				} catch(Exception e) {
 					e.printStackTrace();
 				} finally { 
