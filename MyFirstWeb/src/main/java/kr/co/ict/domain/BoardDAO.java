@@ -184,5 +184,29 @@ public class BoardDAO {
 				}	
 			}
 			
+			// 존재하는 데이터를 업데이트하는 method
+			public void boardUpdate(String content, int boardNum) {
+				Connection con = null;
+				PreparedStatement pstmt = null;
+				try {
+					con = ds.getConnection();
+					String sql = "UPDATE boardTbl SET content=? WHERE board_num=?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, content);
+					pstmt.setInt(2, boardNum);
+					pstmt.executeUpdate();
+					
+				} catch(Exception e) {
+					e.printStackTrace();
+				} finally { 
+					try {
+						con.close();
+						pstmt.close();
+					} catch(Exception e) {
+						e.printStackTrace();
+					}
+				}	
+			}
+			
 			
 }

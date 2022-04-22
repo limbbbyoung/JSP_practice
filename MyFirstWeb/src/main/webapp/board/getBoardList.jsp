@@ -47,5 +47,6 @@
         </c:forEach>
        </tbody>
     </table>
+    <a href="http://localhost:8181/MyFirstWeb/boardInsertForm" ><button>글 쓰기</button></a>
 </body>
 </html>
