@@ -48,7 +48,7 @@ public class BoardInsert extends HttpServlet {
 		// DAO를 통해 INSERT 구문 실행
 	    String insertBoard = dao.boardInsert(writer, title, content);
 	    // 리스트로 리다이렉트(서블릿 주소로 
-		response.sendRedirect("http://localhost:8181/MyFirstWeb/boardList");
+		response.sendRedirect("http://localhost:8181/MyFirstWeb/boardList.do");
 	}
 
 }

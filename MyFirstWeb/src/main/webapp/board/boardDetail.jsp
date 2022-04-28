@@ -22,7 +22,7 @@
     <button type="submit">삭제</button>
     </form>
     <br/>
-    <a href="http://localhost:8181/MyFirstWeb/boardList" ><button>글 목록 돌아오기</button></a>
+    <a href="http://localhost:8181/MyFirstWeb/boardList.do" ><button>글 목록 돌아오기</button></a>
     <br/><br/>
     <form action="http://localhost:8181/MyFirstWeb/boardUpdateForm" method="post">
     <input type="hidden" name="boardNum" value="${board.boardNum }">
