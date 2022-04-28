@@ -50,7 +50,7 @@ public class BoardController extends HttpServlet {
 			List<BoardVO> boardList = dao.getBoardList();
 			System.out.println("데이터 받아오는지 확인 : " + boardList);
 			request.setAttribute("boardList", boardList);
-			ui = "/board/getBoardList.jsp";
+			ui = "/board/getBoardList";
 		}
 		// 포워딩
 		RequestDispatcher dp = request.getRequestDispatcher(ui);
