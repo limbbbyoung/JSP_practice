@@ -17,14 +17,14 @@
     쓴 날짜 : ${board.bDate }<br/>
     마지막 수정날짜 : ${board.mDate }<hr/>
     
-    <form action="http://localhost:8181/MyFirstWeb/boardDelete" method="post">
+    <form action="http://localhost:8181/MyFirstWeb/boardDelete.do" method="post">
     <input type="hidden" name="boardNum" value="${board.boardNum }">
     <button type="submit">삭제</button>
     </form>
     <br/>
     <a href="http://localhost:8181/MyFirstWeb/boardList.do" ><button>글 목록 돌아오기</button></a>
     <br/><br/>
-    <form action="http://localhost:8181/MyFirstWeb/boardUpdateForm" method="post">
+    <form action="http://localhost:8181/MyFirstWeb/boardUpdateForm.do" method="post">
     <input type="hidden" name="boardNum" value="${board.boardNum }">
     <button type="submit">글 수정하기</button>
     </form>
