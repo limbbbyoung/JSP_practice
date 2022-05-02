@@ -12,9 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.co.ict.domain.BoardDAO;
 import kr.co.ict.domain.BoardVO;
+import kr.co.ict.service.BoardDeleteService;
 import kr.co.ict.service.BoardDetailService;
 import kr.co.ict.service.BoardInsertService;
 import kr.co.ict.service.BoardListService;
+import kr.co.ict.service.BoardUpdate;
+import kr.co.ict.service.BoardUpdateForm;
 import kr.co.ict.service.IBoardService;
 
 /**
@@ -73,25 +76,20 @@ public class BoardController extends HttpServlet {
 			sv.execute(request, response);
 			ui = "/boardList.do"; // 리다이렉트시는 폴더명 없이 주소만 적습니다.
 		} else if(uri.equals("/MyFirstWeb/boardDelete.do")) {
-			// 삭제 로직을 수행하는 소스코드
-			String strboardNum = request.getParameter("boardNum");
-			int boardNum = Integer.parseInt(strboardNum);
-		    dao.boardDelete(boardNum);
-		    ui = "/MyFirstWeb/boardList";
+			// 삭제 기능을 수행하는 소스코드
+			sv = new BoardDeleteService();
+			sv.execute(request, response);
+		    ui = "/boardList.do";
 		} else if(uri.equals("/MyFirstWeb/boardUpdateForm.do")) {
 			// 업데이트 페이지로 넘어감.
-			String strBoardNum = request.getParameter("boardNum");
-			int boardNum = Integer.parseInt(strBoardNum);
-			BoardVO board = dao.getBoardDetail(boardNum);
-			request.setAttribute("board", board);
+			sv = new BoardUpdateForm();
+			sv.execute(request, response);
 			ui = "/board/boardUpdateForm.jsp";
 		} else if(uri.equals("/MyFirstWeb/boardUpdate.do")){
 			// 업데이트 로직을 수행하는 소스코드
-			String content = request.getParameter("content");
-			String strBoardNum = request.getParameter("boardNum");
-			int boardNum = Integer.parseInt(strBoardNum);
-		    dao.boardUpdate(content, boardNum);
-			ui = "/boardDetail.do?board_num=" + boardNum;
+			sv = new BoardUpdate();
+			sv.execute(request, response);
+			ui = "/boardDetail.do?board_num=" + request.getParameter("boardNum");
 		} 
 		// 포워딩
 		RequestDispatcher dp = request.getRequestDispatcher(ui);

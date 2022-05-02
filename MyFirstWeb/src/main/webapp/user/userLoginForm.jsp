@@ -22,12 +22,12 @@
 </head>
 <body>
      <h1>로그인</h1>
-     <form action="http://localhost:8181/JDBCPrj/user/userLoginCheck.jsp" method="post">
+     <form action="http://localhost:8181/MyFirstWeb/user/userLoginCheck.jsp" method="post">
      <input type="text" name="userId" placeholder="아이디"><br/>
      <input type="password" name="userPw" placeholder="비밀번호"><br/>
      <button type="submit" class="btn btn-warning">로그인</button>
      </form>
-     <a href="http://localhost:8181/JDBCPrj/user/userJoinForm.jsp">회원가입하기</a><br/>
-     <a href="http://localhost:8181/JDBCPrj/user/userUpdateForm1.jsp">회원정보수정하기</a>
+     <a href="http://localhost:8181/MyFirstWeb/user/userJoinForm.jsp">회원가입하기</a><br/>
+     <a href="http://localhost:8181/MyFirstWeb/user/userUpdateForm1.jsp">회원정보수정하기</a>
 </body>
 </html>

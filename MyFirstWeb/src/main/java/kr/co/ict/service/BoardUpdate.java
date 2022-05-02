@@ -6,19 +6,20 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mysql.cj.Session;
+
 import kr.co.ict.domain.BoardDAO;
 
-public class BoardInsertService implements IBoardService{
+public class BoardUpdate implements IBoardService{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Insert 기능 실행 
-		request.setCharacterEncoding("utf-8");
+		// 업데이트 로직 수행
 		BoardDAO dao = BoardDAO.getInstance();
-		String writer = request.getParameter("writer");
-		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-	    dao.boardInsert(writer, title, content);
+		String strBoardNum = request.getParameter("boardNum");
+		int boardNum = Integer.parseInt(strBoardNum);
+	    dao.boardUpdate(content, boardNum);
 	}
 
 }

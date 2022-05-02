@@ -8,17 +8,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.co.ict.domain.BoardDAO;
 
-public class BoardInsertService implements IBoardService{
+public class BoardDeleteService implements IBoardService{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Insert 기능 실행 
-		request.setCharacterEncoding("utf-8");
+		// 삭제 로직을 수행하는 소스코드
 		BoardDAO dao = BoardDAO.getInstance();
-		String writer = request.getParameter("writer");
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
-	    dao.boardInsert(writer, title, content);
+		String strboardNum = request.getParameter("boardNum");
+		int boardNum = Integer.parseInt(strboardNum);
+	    dao.boardDelete(boardNum);
 	}
 
 }

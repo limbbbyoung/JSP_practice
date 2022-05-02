@@ -7,18 +7,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.ict.domain.BoardDAO;
+import kr.co.ict.domain.BoardVO;
 
-public class BoardInsertService implements IBoardService{
+public class BoardUpdateForm implements IBoardService {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Insert 기능 실행 
-		request.setCharacterEncoding("utf-8");
+		// 업데이트 페이지로 넘어가는 로직
 		BoardDAO dao = BoardDAO.getInstance();
-		String writer = request.getParameter("writer");
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
-	    dao.boardInsert(writer, title, content);
+		String strBoardNum = request.getParameter("boardNum");
+		int boardNum = Integer.parseInt(strBoardNum);
+		BoardVO board = dao.getBoardDetail(boardNum);
+		request.setAttribute("board", board);
 	}
 
 }

@@ -25,12 +25,12 @@
     if(dbId != null){
 		  if(formPw.equals(dbPw)){
 			session.setAttribute("s_user_id", formId);	
-		  	Url="http://localhost:8181/JDBCPrj/user/loginWelcome.jsp";
+		  	Url="http://localhost:8181/MyFirstWeb/user/loginWelcome.jsp";
 		  } else {
-			  Url="http://localhost:8181/JDBCPrj/user/userPwFail.jsp";
+			  Url="http://localhost:8181/MyFirstWeb/user/userPwFail.jsp";
 		     }
     } else {
-    	Url="http://localhost:8181/JDBCPrj/user/userIdFail.jsp";
+    	Url="http://localhost:8181/MyFirstWeb/user/userIdFail.jsp";
     }		
     response.sendRedirect(Url);
 %>

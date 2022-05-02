@@ -13,7 +13,7 @@
 <body>
      <h1>로그아웃 되었습니다.</h1>
      <%
-     response.sendRedirect("http://localhost:8181/JDBCPrj/user/userLoginForm.jsp");
+     response.sendRedirect("http://localhost:8181/MyFirstWeb/user/userLoginForm.jsp");
      %>
 </body>
 </html>
