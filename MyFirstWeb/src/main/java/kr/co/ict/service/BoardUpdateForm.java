@@ -16,9 +16,11 @@ public class BoardUpdateForm implements IBoardService {
 		// 업데이트 페이지로 넘어가는 로직
 		BoardDAO dao = BoardDAO.getInstance();
 		String strBoardNum = request.getParameter("boardNum");
+		String boardWriter = request.getParameter("boardWriter");
 		int boardNum = Integer.parseInt(strBoardNum);
 		BoardVO board = dao.getBoardDetail(boardNum);
 		request.setAttribute("board", board);
+		request.setAttribute("boardWriter", boardWriter);
 	}
 
 }

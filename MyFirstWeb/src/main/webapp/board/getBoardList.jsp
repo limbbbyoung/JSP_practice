@@ -10,8 +10,8 @@
 세션값 : ${sessionScope.s_user_id }<br/>
 <c:if test="${sessionScope.s_user_id eq null }">
  <!-- <script>location.href="http://localhost:8181/MyFirstWeb/"</script>
-      스크립트릿을 정말로 쓰고 싶지 않을때 사용  -->
- <%response.sendRedirect("http://localhost:8181/MyFirstWeb/"); %>
+      스크립트릿을 정말로 쓰고 싶지 않을때 사용, 하지만 단점이 있음. 웹페이지에서 조작가능  -->
+<% //response.sendRedirect("http://localhost:8181/MyFirstWeb/"); %>
 </c:if>
 <!DOCTYPE html>
 <html>
@@ -56,6 +56,6 @@
         </c:forEach>
        </tbody>
     </table>
-    <a href="http://localhost:8181/MyFirstWeb/boardInsertForm.do" ><button>글 쓰기</button></a>
+    <c:if test="${sessionScope.s_user_id eq null }"><a href="http://localhost:8181/MyFirstWeb/boardInsertForm.do" ><button>글 쓰기</button></a></c:if>
 </body>
 </html>

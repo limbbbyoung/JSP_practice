@@ -16,7 +16,7 @@ import kr.co.ict.service.BoardDeleteService;
 import kr.co.ict.service.BoardDetailService;
 import kr.co.ict.service.BoardInsertService;
 import kr.co.ict.service.BoardListService;
-import kr.co.ict.service.BoardUpdate;
+import kr.co.ict.service.BoardUpdateService;
 import kr.co.ict.service.BoardUpdateForm;
 import kr.co.ict.service.IBoardService;
 
@@ -87,7 +87,7 @@ public class BoardController extends HttpServlet {
 			ui = "/board/boardUpdateForm.jsp";
 		} else if(uri.equals("/MyFirstWeb/boardUpdate.do")){
 			// 업데이트 로직을 수행하는 소스코드
-			sv = new BoardUpdate();
+			sv = new BoardUpdateService();
 			sv.execute(request, response);
 			ui = "/boardDetail.do?board_num=" + request.getParameter("boardNum");
 		} 

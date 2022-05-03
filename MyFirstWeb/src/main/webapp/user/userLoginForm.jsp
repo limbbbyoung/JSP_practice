@@ -4,7 +4,7 @@
     // 로그인한 유저는 loginForm을 볼 수 없도록 만들어주세요.
     String userId = (String)session.getAttribute("s_user_id");
     if(userId != null)
-    	response.sendRedirect("http://localhost:8181/JDBCPrj/user/loginWelcome.jsp");
+    	response.sendRedirect("http://localhost:8181/MyFirstWeb/user/loginWelcome.jsp");
     
 %>
 <!DOCTYPE html>
