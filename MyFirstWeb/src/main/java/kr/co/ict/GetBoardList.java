@@ -34,8 +34,10 @@ public class GetBoardList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("/boardList 접속 감지");
+		String strPageNum = request.getParameter("pageNum");
+		int pageNum = Integer.parseInt(strPageNum);
 		BoardDAO bdao = BoardDAO.getInstance();
-		List<BoardVO> boardList = bdao.getBoardList();
+		List<BoardVO> boardList = bdao.getBoardList(pageNum);
 		System.out.println("데이터 받아오는지 확인 : " + boardList);
 		
 		request.setAttribute("boardList", boardList);
@@ -51,10 +53,11 @@ public class GetBoardList extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("/boardList 접속 감지(POST)");
 		request.setCharacterEncoding("utf-8");
-		
+	    String strPageNum = request.getParameter("pageNum");
+	    int pageNum = Integer.parseInt(strPageNum);
 		System.out.println("/boardList 접속 감지");
 		BoardDAO bdao = BoardDAO.getInstance();
-		List<BoardVO> boardList = bdao.getBoardList();
+		List<BoardVO> boardList = bdao.getBoardList(pageNum);
 		System.out.println("데이터 받아오는지 확인 : " + boardList);
 		
 		request.setAttribute("boardList", boardList);

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:if test="${sessionScope.s_user_id !eq ${board.writer }">
+<c:if test="${sessionScope.s_user_id ne board.writer }">
    <%response.sendRedirect("http://localhost:8181/MyFirstWeb/boardList.do"); %>
 </c:if>
 <!DOCTYPE html>

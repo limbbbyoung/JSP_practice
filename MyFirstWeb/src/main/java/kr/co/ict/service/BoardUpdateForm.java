@@ -22,5 +22,4 @@ public class BoardUpdateForm implements IBoardService {
 		request.setAttribute("board", board);
 		request.setAttribute("boardWriter", boardWriter);
 	}
-
 }

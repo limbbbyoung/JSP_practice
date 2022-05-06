@@ -8,6 +8,6 @@
 </head>
 <body>
      <h1>아이디가 존재하지 않습니다.</h1>
-     <a href="http://localhost:8181/JDBCPrj/user/userLoginForm.jsp">로그인창으로 돌아가기</a>
+     <a href="http://localhost:8181/MyFirstWeb/user/userLoginForm.jsp">로그인창으로 돌아가기</a>
 </body>
 </html>

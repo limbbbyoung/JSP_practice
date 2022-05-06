@@ -13,7 +13,7 @@
 </head>
 <body>
     <h1>${board.boardNum }번 글 조회결과입니다.</h1>
-    제목 : <input type="text" value="${board.title }"><br/>
+    제목 : <input type="text" value="${board.title }"><br/> 조회수 ${board.hit }
     <textarea placeholder="readonly" cols="40" rows="10">${board.content }</textarea><br/>
     글쓴이 : <input type="text" value="${board.writer }" readonly><br/>
     쓴 날짜 : ${board.bDate }<br/>

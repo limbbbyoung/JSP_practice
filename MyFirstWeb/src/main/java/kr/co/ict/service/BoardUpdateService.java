@@ -28,8 +28,6 @@ public class BoardUpdateService implements IBoardService{
 		String strBoardNum = request.getParameter("boardNum");
 		int boardNum = Integer.parseInt(strBoardNum);
 	    dao.boardUpdate(content, boardNum);
-	   } else {
-		   
-	   }
+	   } 
 	}
 }
