@@ -232,7 +232,7 @@ public class BoardDAO {
 			} // 조회수 증가 로직 끝
 			
 			// 전체 게시글의 갯수를 가져오는 메서드
-			public int getAllBoardCount() {
+			public int getBoardCount() {
 				Connection con = null;
 				PreparedStatement pstmt = null;
 				ResultSet rs = null;

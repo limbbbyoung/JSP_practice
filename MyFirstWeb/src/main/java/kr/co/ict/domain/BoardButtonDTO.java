@@ -47,7 +47,7 @@ public class BoardButtonDTO {
 			} else {
 				navNum = this.currentPage / 10;
 			} */
-			navNum = ((currentPage - 1) / 10) + 1; // 간소화 코드
+			navNum = (((currentPage - 1) / 10) * 10) + 1; // 간소화 코드
 			this.startPage = navNum;
 			// <<현재 조회중인 페이지 그룹으로 끝페이지 구하기(endPage값 구하기)>>
 			endPage = navNum + (10-1);
