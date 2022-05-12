@@ -25,11 +25,12 @@
 	  }
 </style>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>게시판</title>
 </head>
 <body>
 	<!-- ${boardList } -->
-    <h1>/boardList 임시 페이지</h1>
+	<div class="container">
+    <h1>글 게시판</h1>
     <table class="table table-primary table-hover">
        <thead>
            <tr>
@@ -56,24 +57,24 @@
         </c:forEach>
        </tbody>
     </table>
-    ${buttons }<br/>
-    
+    ${buttons }
     <!-- foreach문의 start, end속성을 이용해 숫자를 알맞게 깔아주세요. -->
     <nav aria-label="Page navigation example">
-		  <ul class="pagination">
+		  <ul class="pagination justify-content-center">
 		  <!-- 이전 10개 페이지 조회버튼을 출력합니다.
           현재 조회중인 페이지가 1~10 페이지가 아닐때만, 첫페이지 -1을 목표주소로 해서 prev 버튼을 만들면 됩니다. -->
           <c:if test="${buttons.startPage ne 1}">
 		    <li class="page-item"><a class="page-link" href="http://localhost:8181/MyFirstWeb/boardList.do?pageNum=${buttons.startPage-1 }">Previous</a></li>
 		  </c:if>
     <c:forEach var="pageNum" begin="${buttons.startPage }" end="${buttons.endPage }"> 
-		    <li class="page-item"><a class="page-link" href="http://localhost:8181/MyFirstWeb/boardList.do?pageNum=${pageNum}">${pageNum }</a></li>
+		    <li class="page-item ${(buttons.currentPage eq pageNum) ? 'active' : ' '}" aria-current="page"><a class="page-link" href="http://localhost:8181/MyFirstWeb/boardList.do?pageNum=${pageNum}">${pageNum }</a></li>
     </c:forEach> 
           <c:if test="${buttons.endPage ne buttons.totalPages}">
 		    <li class="page-item"><a class="page-link" href="http://localhost:8181/MyFirstWeb/boardList.do?pageNum=${buttons.endPage+1 }">Next</a></li>
 		  </c:if>
 		  </ul>
 	</nav>
-    <c:if test="${sessionScope.s_user_id eq null }"><a href="http://localhost:8181/MyFirstWeb/boardInsertForm.do" ><button>글 쓰기</button></a></c:if>
+    <c:if test="${sessionScope.s_user_id ne null }"><a href="http://localhost:8181/MyFirstWeb/boardInsertForm.do" ><button>글 쓰기</button></a></c:if>
+    </div><!-- .container 닫는 부분 -->
 </body>
 </html>

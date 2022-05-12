@@ -40,7 +40,7 @@ public class BoardListService implements IBoardService {
 		} 
 		// DAO는 다시 생성해줘야 합니다.
 		BoardDAO dao = BoardDAO.getInstance();
-		int boardCount = dao.getBoardCount();// 글 갯루를 얻어오기.
+		int boardCount = dao.getBoardCount();// 글 갯수를 얻어오기.
 	    BoardButtonDTO buttons = new BoardButtonDTO(boardCount, pageNum); // 밑에 깔아줘야 하는 버튼에 대한 정보 추가
 	    
 	    // 바인딩해서 넘겨주신 다음, 결과페이지에서 수치정보도 확인해주세요.
